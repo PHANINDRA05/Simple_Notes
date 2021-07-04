@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') %>
+    <style>
+        *{
+            font-family: 'Dosis', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: block;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            line-height: 1.5;
+        }
+        div{
+            display: block;
+        }
+        .navbar{
+            display: flex;
+            padding: .8rem 2rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navhome{
+            background: #007CC7;
+        }
+        .navbar-brand{
+            font-size: 2rem;
+            font-weight: 600;
+            display: inline-block;
+            padding-top: .3125rem;
+            padding-bottom: .3125rem;
+            margin-right: 1rem;
+        }
+        a{
+            background-color: transparent;
+        }
+        .navbar-toggler{
+            background: transparent;
+            font-size: 1.25rem;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+        ul{
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+        .uul{
+            margin-right: 60px;
+        }
+        li{
+            display: list-item;
+        }
+        .nav-link{
+            display: block;
+            padding: .5rem 1rem;
+        }
+        .navbar-light .navbar-nav .nav-link{
+            color: rgba(0,0,0,.5);
+        }
+        .navkey{
+            font-size: large;
+            color: #000000;
+            margin-right: 20px;
+            text-transform: capitalize;
+            font-weight: 600;
+            padding: 5px;
+        }
+        .navkey:hover{
+            background: #fff;
+            border-radius: 14px;
+        }
+        footer{
+            background-color: black;
+            top: 100%;
+            width: 100%;
+        }
+    </style>
+
+<body>
+    <%- include('./partials/nav') %> 
+
+    <div class="jumbotron jumbotron-fluid" style="background: #EEFBFB; margin-top: 2px;">
+        <div class="container">
+            <h1 class="zoom" style="text-align: center; font-weight: 800; text-transform: capitalize;">View Available Notes</h1>
+        </div>
+    </div>
+
+    
+    <div class="container">
+        <form class="form-inline" action="/explore" method="POST">
+            <div class="form-group">
+                <label for="title">Notes Domain</label>
+                <select name="domain" class="form-control form-control-lg">
+                    <option>All</option>
+                    <option>Computer Science Engineering</option>
+                    <option>Electronics and communication</option>
+                    <option>Electrical Engineering</option>
+                    <option>Aero Space Engineering</option>
+                    <option>Mechanical Engineering</option>
+                    <option>Others</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Notes Type</label>
+                <select name="type" class="form-control form-control-lg">
+                    <option>All</option>
+                    <option>Note Book</option>
+                    <option>Text Book</option>
+                    <option>Sample or Previous Year Paper</option>
+                    <option>Others</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="text-align: center;">
+                <button type="submit" class="btn btn-outline-dark">Submit</button>
+            </div>
+        </form>          
+    </div>
+
+    <div class="jumbotron jumbotron-fluid" style="background-color: white;">
+        <div class="container-fluid">
+          <div class="row">
+            <% if(category1=="ALL" || category2=="ALL" ) {%>
+                      <% if (notes.length> 0) { %>
+                                                    <% notes.forEach(pp=> { %>
+                                                              <div class="col-lg-4 col-md-6 col-sm-12">
+                                                                <div class="card zoom" style="width: 18rem; background-color: rgb(255, 145, 0);" >
+                                                                  <div class="card-body">
+                                                                    <h4 class="card-title">
+                                                                      <%= pp.title %>
+                                                                    </h4>
+                                                                    
+                                                                    <a href="<%=pp.document_url%>"><button type="submit" class="btn btn-outline-dark"
+                                                                        style="transition: 0.4s; margin-right:20px ; margin-left: 30px;">View
+                                                                        PDF</button></a>
+                                                                        
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                              <br>
+                                                      <% }) %>
+                            <% } %>
+              <% } else {%>
+                <% if (notes.length> 0) { %>
+                  <% notes.forEach(pp=> { %>
+                    <% if (pp.type == category1 && pp.domain == category2 ) { %>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                              <div class="card zoom2" style="width: 18rem; background-color: rgba(255, 174, 0, 0.829);" ;">
+                                <div class="card-body">
+                                  <h4 class="card-title">
+                                    <%= pp.title %>
+                                  </h4>
+                                  <a href="<%=pp.document_url%>"><button type="submit" class="btn btn-outline-dark"
+                                      style="transition: 0.4s; margin-right:20px ; margin-left: 30px;">View
+                                      PDF</button></a>
+                                </div>
+                              </div>
+                            </div>
+                            <br>
+                            <%}%>
+                    <% }) %>
+                    <% } else { %>
+                      <p style="text-align: center; font-weight: 800; "><span
+                          style="text-align:center">There
+                          are no Notes to display :( </span></p>
+                <% } %>
+                <% } %>
+                <br> 
+          </div>
+        </div>  
+      </div>
+        
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+      <%- include('./partials/footer') %>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    
+</body>
+</html>

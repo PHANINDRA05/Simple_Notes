@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') %>    
+    <style>
+        *{
+            font-family: 'Dosis', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            /* background: #00C7BA; */
+            display: block;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            line-height: 1.5;
+            justify-content: center;
+            align-items: center;
+        }
+        div{
+            display: block;
+        }
+        .navbar{
+            display: flex;
+            padding: .8rem 2rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navhome{
+            background: #007CC7;
+        }
+        .navbar-brand{
+            font-size: 2rem;
+            font-weight: 600;
+            display: inline-block;
+            padding-top: .3125rem;
+            padding-bottom: .3125rem;
+            margin-right: 1rem;
+        }
+        a{
+            background-color: transparent;
+        }
+        .navbar-toggler{
+            background: transparent;
+            font-size: 1.25rem;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+        ul{
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+        .uul{
+            margin-right: 60px;
+        }
+        li{
+            display: list-item;
+        }
+        .nav-link{
+            display: block;
+            padding: .5rem 1rem;
+        }
+        .navbar-light .navbar-nav .nav-link{
+            color: rgba(0,0,0,.5);
+        }
+        .navkey{
+            font-size: large;
+            color: #000000;
+            margin-right: 20px;
+            text-transform: capitalize;
+            font-weight: 600;
+            padding: 5px;
+        }
+        .navkey:hover{
+            background: #fff;
+            border-radius: 14px;
+        }
+        .container{
+            position: relative;
+            top: 120px;
+            left: 10px;
+        }
+        .zoom{
+            text-align: center; 
+            font-weight: 800; 
+            text-transform: capitalize;
+        } 
+        .cup{
+            position: relative;
+            width: 180px;
+            height: 200px;
+            background: linear-gradient(to right,#007CC7,#007CC7);
+            border-bottom-left-radius: 45%;
+            border-bottom-right-radius: 45%;
+        }
+        .top1{
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to right,#007CC7,#007CC7);
+            border-radius: 50%;
+        } 
+        .circle{
+            position: absolute;
+            top: 4px;
+            left: 10px;
+            width: calc(100% - 20px);
+            height: 33px;
+            background: #0090C7;
+            border-radius: 50%; 
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .tea{
+            position: absolute;
+            top: 8px;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(#c57e65,#e28462);
+            border-radius: 50%;
+        }
+        .handle{
+            position: absolute;
+            right: 112px;
+            top: 18px;
+            width: 117px;
+            height: 125px;
+            border: 25px solid #007CC7;
+            border-left: 25px solid transparent;
+            border-bottom: 25px solid transparent;
+            border-radius: 50%;
+            transform: rotate(222deg); 
+        }
+        .vapour{
+            position: relative;
+            display: flex;
+            z-index: 1;
+            padding: 0 20px;
+        }
+        .vapour span{
+            position: relative;
+            bottom: 50px;
+            display: block;
+            margin: 0 2px 50px;
+            min-width: 8px;
+            height: 120px;
+            background: grey;
+            border-radius: 50%;
+            animation: animate 5s linear infinite;
+            opacity: 0;
+            filter: blur(8px);
+            animation-delay: calc(var(--i)*(-0.5s));
+        }
+        @keyframes animate{
+            0%{
+                transform: translateY(0) scaleX(1);
+                opacity: 0;
+            }
+            15%{
+                opacity: 1;
+            }
+            50%{
+                transform: translateY(-150px) scaleX(5);
+            }
+            95%{
+                opacity: 0;
+            }
+            100%{
+                transform: translateY(-300px) scaleX(10);
+            }
+        }
+        img{
+            width: 10%;
+            height: 20%;
+        }
+        footer{
+            background-color: black;
+            top: 100%;
+            width: 100%;
+        }
+    </style>
+
+<body>
+    <%- include('./partials/nav') %> 
+
+
+    <div class="jumbotron jumbotron-fluid" style="background: #EEFBFB; top:50px;">
+        <h1 class="zoom">Welcome</h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            
+                <!-- <div class="jumbotron jumbotron-fluid" style="background-color: white;"> -->
+                    <!-- <div class="container-fluid"> -->
+                      <div class="row">
+                          <div class="col">
+                        <% if (notes.length> 0) { %>
+                          <% notes.forEach(pp=> { %>
+                            <% if (pp.contributer_id==user_id) { %>
+                              <div class="col-lg-3 col-md-6 col-sm-12" >
+                                <div class="card zoom2" style="width: 22rem; height: auto; background-color: #007CC7;">
+                                  <div class="card-body">
+                                    <h5 class="card-title"><%= pp.title %></h5>
+                                    <a href="<%=pp.document_url%>"><button type="submit" class="btn btn-outline-dark"
+                                      style="transition: 0.4s; margin-right:20px ; margin-left: 30px;">View
+                                      PDF</button></a>
+                                    <a class="delete" data-doc="<%= pp._id %>">
+                                      <img src="/delete.svg" alt="delete icon">
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                              <% } %>
+                              <% }) %>
+                                <% } else { %>
+                                  <p style="text-align: center; font-weight: 800; "><span style="text-align:center">There
+                                      are no Notes to display :( </span></p>
+                                  <% } %>
+                            </div>
+                      </div>
+                    <!-- </div> -->
+                  <!-- </div>   -->
+
+        </div>
+        <div class="col-lg-4">
+                <div class="container">
+                    <div class="cup">
+                        <div class="top1">
+                            <div class="vapour">
+                                <span style="--i:1;"></span>  
+                                <span style="--i:3;"></span>
+                                <span style="--i:16;"></span>
+                                <span style="--i:5;"></span>
+                                <span style="--i:13;"></span>
+                                <span style="--i:20;"></span>
+                                <span style="--i:6;"></span>
+                                <span style="--i:7;"></span>
+                                <span style="--i:10;"></span>
+                                <span style="--i:8;"></span>
+                                
+                            </div>
+                            <div class="circle">
+                                <div class="tea">
+            
+                                </div>
+                            </div>
+                        </div>
+                        <div class="handle">
+            
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    
+      
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+    <%- include('./partials/footer') %> 
+
+
+      <script>
+        const trashcan = document.querySelector('a.delete');
+        trashcan.addEventListener('click', (e) => {
+            const deleting = `
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            `
+            document.body.innerHTML = deleting;
+            // document.body.querySelector(".spinner-border") 
+          const endpoint = `/${trashcan.dataset.doc}`;
+          fetch(endpoint, {
+            method: 'DELETE',
+          })
+            .then(response => response.json())
+            .then(data => window.location.href = data.redirect)
+            .catch(err => console.log(err));
+        });
+      </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    
+</body>
+</html>

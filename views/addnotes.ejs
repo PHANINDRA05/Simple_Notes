@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') %>
+    <style>
+        *{
+            font-family: 'Dosis', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: block;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            line-height: 1.5;
+        }
+        div{
+            display: block;
+        }
+        .navbar{
+            display: flex;
+            padding: .8rem 2rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navhome{
+            background: #007CC7;
+        }
+        .navbar-brand{
+            font-size: 2rem;
+            font-weight: 600;
+            display: inline-block;
+            padding-top: .3125rem;
+            padding-bottom: .3125rem;
+            margin-right: 1rem;
+        }
+        a{
+            background-color: transparent;
+        }
+        .navbar-toggler{
+            background: transparent;
+            font-size: 1.25rem;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+        ul{
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+        .uul{
+            margin-right: 60px;
+        }
+        li{
+            display: list-item;
+        }
+        .nav-link{
+            display: block;
+            padding: .5rem 1rem;
+        }
+        .navbar-light .navbar-nav .nav-link{
+            color: rgba(0,0,0,.5);
+        }
+        .navkey{
+            font-size: large;
+            color: #000000;
+            margin-right: 20px;
+            text-transform: capitalize;
+            font-weight: 600;
+            padding: 5px;
+        }
+        .navkey:hover{
+            background: #fff;
+            border-radius: 14px;
+        }
+        footer{
+            background-color: black;
+            top: 100%;
+            width: 100%;
+        }
+    </style>
+
+<body>
+    <%- include('./partials/nav') %> 
+
+
+    <div class="row" style="margin-top: 100px;">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="">
+                <img src="/undraw_Add_notes_re_ln36.svg" style="margin-top: 100px; margin-left: auto; display: block; margin-right:auto; width: 80%;">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <h1 style="text-align: center; margin-top: 40px; font-weight: 600; color: #000000;">Add New Notes</h1>
+            <div class="jumbotron" style="background: #fff;">
+                <div class="container">
+                    <form action="/newnotes" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="title">Notes Name</label>
+                            <input type="text" class="form-control" name="title" id="title" maxlength="19"   placeholder="Enter Topic Name of Notes | Length of title should be less than 20 letters"  required>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Notes Type</label>
+                            <select name="type" class="form-control form-control-lg">
+                                <option>Note Book</option>
+                                <option>Text Book</option>
+                                <option>Sample or Previous Year Paper</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Notes Domain</label>
+                            <select name="domain" class="form-control form-control-lg">
+                                <option>Computer Science Engineering</option>
+                                <option>Electronics and communication</option>
+                                <option>Electrical Engineering</option>
+                                <option>Aero Space Engineering</option>
+                                <option>Mechanical Engineering</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="document">Final Document / Notes </label>
+                            <input type="file" class="form-control" name="doc" required>
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <button type="submit" class="btn btn-outline-dark">Submit</button>
+                        </div>
+                        
+                          
+                    </form>
+                </div>
+              </div>
+            
+        </div>
+    </div>
+
+
+    <%- include('./partials/footer') %>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    
+</body>
+</html>
