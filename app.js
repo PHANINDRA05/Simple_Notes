@@ -39,7 +39,7 @@ const password_db = require('./models/model.password');
 const notes_db = require('./models/model.notes');
 const dburl = 'mongodb+srv://phani:test123@nodeone.tz1c8.mongodb.net/Node-one?retryWrites=true&w=majority';
 mongoose.connect(dburl,{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true })
-.then(result=> app.listen(port))
+.then(result=> app.listen(port, (port) => {console.log(`server started at ${port}`)}))
 .catch(err=>console.log(err));
 
 //View Engine
