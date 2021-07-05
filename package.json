@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "devStart": "nodemon app.js"
   },
   "author": "",
@@ -26,5 +27,13 @@
   "devDependencies": {
     "dotenv": "^9.0.2",
     "nodemon": "^2.0.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PHANINDRA05/Simple_Notes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PHANINDRA05/Simple_Notes/issues"
+  },
+  "homepage": "https://github.com/PHANINDRA05/Simple_Notes#readme"
 }
